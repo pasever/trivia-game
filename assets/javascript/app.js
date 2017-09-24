@@ -4,28 +4,9 @@ var correctAnswers = 0;
 var incorrectAnswers = 0;
 var len = questions.length;
 var currentQuestion;
+var questionCounter = 0;
+var clickCounter = 0;
 
-
-// make a variable thats going to hold the question number
-// randomly select an element from questions array 
-// increment varibale that holds question number by one
-// remove that element from array
-// make html consisting of 
-// question text
-// possible answers
-// <button value="answer_value">answer_text</button>
-// register event handlers for possible answer buttons 
-// function(event) {
-//      var value_of_button_clicked = event.target.value // probably hold the value
-// }
-// user clicks button answer
-// compare value of button with value of correct answer
-// if it is the same
-// dipslay message congrats || optional
-// move on to next question
-// else
-// display green border around correct answer
-// move on to next questions
 $(".quiz").ready(function () {
     $(".quiz").hide();
 });
@@ -36,14 +17,13 @@ $("#startingButton").on("click", function () {
     $("#startingButton").hide();
     $("#startingText").hide();
     $(".quiz").show();
-
     generate();
     countdown();
 
 });
 
 function countdown() {
-    var seconds = 10;
+    var seconds = 15;
     var countdown = document.getElementById('questionTimer');
 
     int = setInterval(function () { //Starts the interval
@@ -67,31 +47,63 @@ function generate() {
         $("#" + i).append(currentQuestion.answers[i]);
     }
 
+    questionCounter++;
+    $("#questionCounter").html(questionCounter);
+
+
 }
 
 $("label").on("click", function () {
+    var clickCounter = 0;
 
     var guess = $(this)[0].innerText;
 
     console.log(guess);
     correctGuess(guess);
+    clickCounter++;
+    console.log(clickCounter);
 
 });
 
 function correctGuess(choice) {
     var correctAnswer = currentQuestion.solution;
     console.log(correctAnswer);
-    if (choice == correctAnswer) {
-        correcrAnwsers++;
+    if ( choice == correctAnswer ) {
+        correctAnwsers++;
         console.log("Great Job!");
         alert("Great Job");
         console.log(correctAnswers);
+        clearInterval(int);
+        reset();
+        nextQuestion();
+        
     } else {
         alert("Try again");
         console.log("try again");
         incorrectAnswers++;
         console.log(incorrectAnswers);
+        clearInterval(int);
+        reset();
+        nextQuestion();
+        
     }
+}
+
+function nextQuestion() {
+    clearInterval(int);
+    generate();
+    reset();
+}
+
+function reset() {
+     seconds = 15;
+     countdown();
+       
+}
+
+if (clickCounter = 10)  {
+    results();
+    
 }
 
 
@@ -129,9 +141,25 @@ function correctGuess(choice) {
 //var container = document.createElement("div");
 //for (var i = 0; i < questions.length; i++) {
 //    var questionsContainer = document.createElement("div");
-//    questionsContainerId = "questions" + 1;
-//    
-//    
-//    
+//    questionsContainerId = "questions" + 1;  
 //}
-////
+// make a variable thats going to hold the question number
+// randomly select an element from questions array 
+// increment varibale that holds question number by one
+// remove that element from array
+// make html consisting of 
+// question text
+// possible answers
+// <button value="answer_value">answer_text</button>
+// register event handlers for possible answer buttons 
+// function(event) {
+//      var value_of_button_clicked = event.target.value // probably hold the value
+// }
+// user clicks button answer
+// compare value of button with value of correct answer
+// if it is the same
+// display message congrats || optional
+// move on to next question
+// else
+// display green border around correct answer
+// move on to next questions
