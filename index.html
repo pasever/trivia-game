@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <title>Trivia: Evgheni Pascalov</title>
+        <!-- Reset style sheet-->
+        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+        <!-- Bootstrap CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Final style sheet-->
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    </head>
+    <body>
+
+        <nav id="nav" class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="">Evgheni Pascalov</a>
+                </div>
+
+
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li class="nav-item dropdown"><a href="contact.html">Contact</a></li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 center-block">
+                    <h2>Timer: <span id="questionTimer">10</span></h2>
+
+                </div>
+
+                <div class="col-md-9 col-md-offset-3">  
+                    <div id='startingText'> 
+                        <h1 class="text-center">Welcome to the Trivia Game!</h1>
+                        <p class="text-center">I believe that the fastest way for the whole boot 
+                            camp group to learn is by challenging each other. So here we go! 
+                            Lets see how many of next 10 questions you will answer correctly</p>
+                    </div>
+                    <div>
+                        <h2 id="questionPlace">
+
+                        </h2>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg center-block" id='startingButton'>Start the game</button>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9 col-md-offset-3 center-block"> 
+                    <div id='answersPlace'>
+
+                        <div class="quiz" id="quiz" data-toggle="buttons">
+                            <label id="0" class="element-animation1 btn btn-lg btn-warning btn-block"><span class="btn-label"><i class="glyphicon "></i></span> <input type="radio" name="q_answer" value="1"></label>
+                            <label id="1" class="element-animation2 btn btn-lg btn-warning btn-block"><span class="btn-label"><i class="glyphicon "></i></span> <input type="radio" name="q_answer" value="2"></label>
+                            <label id="2" class="element-animation3 btn btn-lg btn-warning btn-block"><span class="btn-label"><i class="glyphicon "></i></span> <input type="radio" name="q_answer" value="3"></label>
+                            <label id="3" class="element-animation4 btn btn-lg btn-warning btn-block"><span class="btn-label"><i class="glyphicon"></i></span> <input type="radio" name="q_answer" value="4"></label>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="push"></div>
+            </div>
+        </div>  
+
+        <footer class="footer">
+
+            <p class="text-center">&copy; Copyright 2017 Evgheni Pascalov</p>
+
+        </footer>
+
+        <script src="assets/javascript/questions.js"></script>  
+        <script src="assets/javascript/app.js"></script>
+
+        <!-- Bootstrap JavaScript CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+
+</html>
