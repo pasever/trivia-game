@@ -6,6 +6,7 @@ var len = questions.length;
 var currentQuestion;
 var questionCounter = 0;
 var clickCounter = 0;
+var clickedButton;
 
 $(".quiz").ready(function () {
     $(".quiz").hide();
@@ -23,7 +24,7 @@ $("#startingButton").on("click", function () {
 });
 
 function countdown() {
-    var seconds = 15;
+    var seconds = 20;
     var countdown = document.getElementById('questionTimer');
 
     int = setInterval(function () { //Starts the interval
@@ -43,6 +44,8 @@ function generate() {
     $("#questionPlace").html(currentQuestion.question);
     var ansLen = currentQuestion.answers.length;
 
+    //if (currentQuestion[] === ' ') continue;
+    
     for (var i = 0; i < ansLen; i++) {
         $("#" + i).append(currentQuestion.answers[i]);
     }
@@ -54,10 +57,7 @@ function generate() {
 }
 
 $("label").on("click", function () {
-    var clickCounter = 0;
-
     var guess = $(this)[0].innerText;
-
     console.log(guess);
     correctGuess(guess);
     clickCounter++;
@@ -66,44 +66,47 @@ $("label").on("click", function () {
 });
 
 function correctGuess(choice) {
+    
     var correctAnswer = currentQuestion.solution;
     console.log(correctAnswer);
-    if ( choice == correctAnswer ) {
-        correctAnwsers++;
-        console.log("Great Job!");
-        alert("Great Job");
-        console.log(correctAnswers);
-        clearInterval(int);
-        reset();
-        nextQuestion();
-        
+    if (choice === correctAnswer) {
+            correctAnswers++;
+            console.log("Great Job!");
+            alert("Great Job!");
+            console.log(correctAnswers);
+            clearInterval(int);
+            reset();
+            nextQuestion();
     } else {
-        alert("Try again");
-        console.log("try again");
-        incorrectAnswers++;
-        console.log(incorrectAnswers);
-        clearInterval(int);
-        reset();
-        nextQuestion();
-        
+    alert("Try again");
+    console.log("Hmmmmm");
+    incorrectAnswers++;
+    console.log(incorrectAnswers);
+    clearInterval(int);
+    reset();
+    nextQuestion();
+
     }
+
 }
+
 
 function nextQuestion() {
     clearInterval(int);
+    $("label").html("");
     generate();
     reset();
 }
 
 function reset() {
-     seconds = 15;
-     countdown();
-       
-}
+    seconds = 15;
+    countdown();
 
-if (clickCounter = 10)  {
-    results();
-    
+}
+if ( clickCounter ===10 ) {
+    alert("Thank you for taking the test!");
+//    results();
+
 }
 
 

@@ -7,20 +7,13 @@ var questions = [
   },
   {
     question: 'Which Array method changes the Array itself?',
-    answers: [
-      'Array.prototype.splice()',
-      'Array.prototype.slice()',
-    ],
+    answers: ['Array.prototype.splice()', 'Array.prototype.slice()'],
     solution: 'Array.prototype.splice()',
     explanation: 'The splice() method changes the contents of an array by removing existing elements and/or adding new elements.',
   },
   {
     question: 'Which operator is the only JavaScript operator that takes three operands?',
-    answers: [
-      'The conditional (ternary) operator',
-      'The assignment operator',
-      'Logical OR (||)',
-    ],
+    answers: ['The conditional (ternary) operator', 'The assignment operator', 'Logical OR (||)',],
     solution: 'The conditional (ternary) operator',
     explanation: 'The conditional (ternary) operator is the only JavaScript operator that takes three operands. This operator is frequently used as a shortcut for the if statement.',
    
@@ -42,7 +35,7 @@ var questions = [
       'Brendan Eich',
       'Tim Berners-Lee',
       'Dennis Ritchie',
-      'Steve Wozniak',
+      'Steve Wozniak'
     ],
     solution: 'Brendan Eich',
     explanation: 'Brendan Eich is an American technologist and creator of the JavaScript programming language. He co-founded the Mozilla project, the Mozilla Foundation and the Mozilla Corporation, and served as the Mozilla Corporation\'s chief technical officer and briefly its chief executive officer.',
@@ -54,7 +47,7 @@ var questions = [
       '1995',
       '1994',
       '1996',
-      '1999',
+      '1999'
     ],
     solution: '1995',
     explanation: 'Although it was developed under the name Mocha, the language was officially called LiveScript when it first shipped in beta releases of Netscape Navigator 2.0 in September 1995, but it was renamed JavaScript when it was deployed in the Netscape Navigator 2.0 beta 3 in December.',
