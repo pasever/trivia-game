@@ -44,10 +44,13 @@ function generate() {
     $("#questionPlace").html(currentQuestion.question);
     var ansLen = currentQuestion.answers.length;
 
-    //if (currentQuestion[] === ' ') continue;
-    
     for (var i = 0; i < ansLen; i++) {
-        $("#" + i).append(currentQuestion.answers[i]);
+        $("#" + i).append(currentQuestion.answers[i]).show();
+       
+    }
+ 
+    for ( i; i < 4; i++ ) {
+        var emptyButton = $("#" + i).hide();
     }
 
     questionCounter++;
@@ -66,25 +69,25 @@ $("label").on("click", function () {
 });
 
 function correctGuess(choice) {
-    
+
     var correctAnswer = currentQuestion.solution;
     console.log(correctAnswer);
     if (choice === correctAnswer) {
-            correctAnswers++;
-            console.log("Great Job!");
-            alert("Great Job!");
-            console.log(correctAnswers);
-            clearInterval(int);
-            reset();
-            nextQuestion();
+        correctAnswers++;
+        console.log("Great Job!");
+        alert("Great Job!");
+        console.log(correctAnswers);
+        clearInterval(int);
+        reset();
+        nextQuestion();
     } else {
-    alert("Try again");
-    console.log("Hmmmmm");
-    incorrectAnswers++;
-    console.log(incorrectAnswers);
-    clearInterval(int);
-    reset();
-    nextQuestion();
+        alert("Hmmmmmm");
+        console.log("Hmmmmm");
+        incorrectAnswers++;
+        console.log(incorrectAnswers);
+        clearInterval(int);
+        reset();
+        nextQuestion();
 
     }
 
@@ -103,7 +106,7 @@ function reset() {
     countdown();
 
 }
-if ( clickCounter ===10 ) {
+if (clickCounter == 10) {
     alert("Thank you for taking the test!");
 //    results();
 
