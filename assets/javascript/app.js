@@ -7,6 +7,10 @@ var currentQuestion;
 var questionCounter = 0;
 var clickCounter = 0;
 var clickedButton;
+var gameOverBool = false;
+var totalAnswers = correctAnswers + incorrectAnswers;
+
+
 
 $(".quiz").ready(function () {
     $(".quiz").hide();
@@ -26,30 +30,37 @@ $("#startingButton").on("click", function () {
 function countdown() {
     var seconds = 20;
     var countdown = document.getElementById('questionTimer');
+    
 
     int = setInterval(function () { //Starts the interval
         seconds--;
         countdown.innerHTML = seconds;
         if (seconds === 0) {
             clearInterval(int); //Stops the interval
+            
             setTimeout(nextQuestion, 25);
         }
     }, 1000);
 }
 
 function generate() {
-
+    if ( gameOverBool === true ) {
+        return;
+        reset();
+        
+    }
     var rand = Math.floor(Math.random() * len);
+    
     currentQuestion = questions[rand];
     $("#questionPlace").html(currentQuestion.question);
     var ansLen = currentQuestion.answers.length;
-
+    
     for (var i = 0; i < ansLen; i++) {
         $("#" + i).append(currentQuestion.answers[i]).show();
-       
     }
- 
-    for ( i; i < 4; i++ ) {
+
+    
+    for (i; i < 4; i++) {
         var emptyButton = $("#" + i).hide();
     }
 
@@ -58,6 +69,7 @@ function generate() {
 
 
 }
+
 
 $("label").on("click", function () {
     var guess = $(this)[0].innerText;
@@ -97,23 +109,36 @@ function correctGuess(choice) {
 function nextQuestion() {
     clearInterval(int);
     $("label").html("");
+    checkIfGameEnd();
     generate();
     reset();
 }
 
 function reset() {
-    seconds = 15;
-    countdown();
+
+    if (!gameOverBool) {
+        countdown();
+
+    }
 
 }
-if (clickCounter == 10) {
-    alert("Thank you for taking the test!");
+
+
+function checkIfGameEnd() {
+    totalAnswers = correctAnswers + incorrectAnswers;
+    console.log(totalAnswers);
+    if (totalAnswers === 10) {
+        gameOverBool = true;
+        alert("Thank you for taking the test!");
+        reset();
+        $(".quiz").hide();
+
+    }
+}
+
 //    results();
 
-}
 
-
-//    $("#questionPlace").html(questions[rand].question);
 //    
 // //for loop around questions answers
 //  //i is iterator for question index

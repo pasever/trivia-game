@@ -2,7 +2,7 @@ var questions = [
     {
         question: 'What will <code>typeof null</code> return?',
         answers: ['\'object\'', '\'null\'', '\'undefined\'', '\'number\''],
-        solution: '\'object\'',
+        solution: '\'object\'', //0,
         explanation: 'In the first implementation of JavaScript, JavaScript values were represented as a type tag and a value. The type tag for objects was 0. null was represented as the NULL pointer (0x00 in most platforms). Consequently, null had 0 as type tag, hence the bogus typeof return value.',
     },
     {

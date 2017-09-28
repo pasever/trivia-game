@@ -17,15 +17,30 @@ h1, h2 {
     margin-top: 50px;   
 }
 
+.answersColumn {
+    position: relative;
+}
+
+#answersPlace {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
 .answersOptions {
     font-size: 60px;
     font-color: green;
 }
 #quiz {
-    padding-top: 3%;
     width: 75%; 
     margin-left: auto;
     margin-right: auto;
+    display: table;
+    height: 100%;
+}
+#quiz input[type="radio"] {
+    display: none;
 }
 
 p {
@@ -124,5 +139,10 @@ label .glyphicon {
 }
 
 .text-center {
+    vertical-align: middle;
+}
+
+.tablecell {
+    display: table-cell;
     vertical-align: middle;
 }
