@@ -8,7 +8,6 @@ var questionCounter = 0;
 var clickedButton;
 var gameOverBool = false;
 var totalAnswers = correctAnswers + incorrectAnswers;
-var period;
 
 
 
@@ -84,13 +83,13 @@ function correctGuess(choice) {
         correctAnswers++;
         alert("Great Job!");
         //$("#correctPlace").html("Correct");
-        clearInterval(int);
+        clearInterval(period);
         reset();
         nextQuestion();
     } else {
         alert("Hmmmmmm");
         incorrectAnswers++;
-        clearInterval(int);
+        clearInterval(period);
         reset();
         nextQuestion();
 
@@ -100,7 +99,7 @@ function correctGuess(choice) {
 
 
 function nextQuestion() {
-    clearInterval(int);
+    clearInterval(period);
     $("label").html("");
     checkIfGameEnd(); 
     generate();
