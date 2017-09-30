@@ -8,6 +8,7 @@ var questionCounter = 0;
 var clickedButton;
 var gameOverBool = false;
 var totalAnswers = correctAnswers + incorrectAnswers;
+var period;
 
 
 
@@ -32,12 +33,12 @@ function countdown() {
     var countdown = document.getElementById('questionTimer');
 
 
-    int = setInterval(function () { //Starts the interval
+    period = setInterval(function () { //Starts the interval
         seconds--;
         countdown.innerHTML = seconds;
         if (seconds === 0) {
-            clearInterval(int); //Stops the interval
-
+            clearInterval(period); //Stops the interval
+            console.log('what "this" equals to inside of the interval', this);
             setTimeout(nextQuestion, 25);
         }
     }, 1000);
@@ -47,10 +48,11 @@ function generate() {
     if (gameOverBool === true) {
         return;
         reset();
-
     }
     var rand = Math.floor(Math.random() * len);
 
+
+    //explore the method Array.splice() to remove a question from the array and put it somewhere else
     currentQuestion = questions[rand];
     $("#questionPlace").html(currentQuestion.question);
     var ansLen = currentQuestion.answers.length;
@@ -59,14 +61,12 @@ function generate() {
         $("#" + i).append(currentQuestion.answers[i]).show();
     }
 
-
     for (i; i < 4; i++) {
         var emptyButton = $("#" + i).hide();
     }
 
     questionCounter++;
     $("#questionCounter").html(questionCounter);
-
 
 }
 
@@ -102,7 +102,7 @@ function correctGuess(choice) {
 function nextQuestion() {
     clearInterval(int);
     $("label").html("");
-    checkIfGameEnd();
+    checkIfGameEnd(); 
     generate();
     reset();
 }
@@ -136,7 +136,8 @@ function results() {
     finalMessage += "</br>" + "</br>" + "Questions you've answered correctly - " + correctAnswers + "</br>";
     //finalMessage += "</br>" + "If you want to take the test again click below";
     $("#questionPlace").html(finalMessage);
-    //$("#startingButton").show();
-    //$("#startingButton").on("click", x);
-    
+    $("#startingButton").show();
+    //gameOverBool = true;
+//    $("#startingButton").on("click", x);
+    $("#startingButton").trigger('click');
 }
