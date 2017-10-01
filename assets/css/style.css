@@ -1,9 +1,6 @@
 .col-md-9 {
     background: rgb(37,37,37);
-/*    background: rgb(238,238,238);*/
-/*    background: url("../images/Programming.png");*/
     min-height: 250px;
-/*    float: right;*/
     margin-top: 2%;
     
 }
@@ -30,7 +27,6 @@ h1, h2 {
 
 .answersOptions {
     font-size: 60px;
-    font-color: green;
 }
 #quiz {
     width: 75%; 
@@ -135,11 +131,12 @@ label .glyphicon {
 
 #pagefooter {
     height: 15%;
-    min-height: 40px;
+    min-height: 50px;
 }
 
 .text-center {
     vertical-align: middle;
+    padding-top: 1%;
 }
 
 .tablecell {

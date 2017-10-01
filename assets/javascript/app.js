@@ -8,29 +8,23 @@ var questionCounter = 0;
 var clickedButton;
 var gameOverBool = false;
 var totalAnswers = correctAnswers + incorrectAnswers;
+var period;
 
-
-
-
-$(".quiz").ready(function () {
-    $(".quiz").hide();
-});
-
-
-var x = $("#startingButton").on("click", function start() {
+//start button on click hides the button and starts the test by firing the countdown and generate functions
+$("#startingButton").on("click", function start() {
 
     $("#startingButton").hide();
     $("#startingText").hide();
-    $(".quiz").show();
+    $("#quiz").removeClass("hidden");
+
     generate();
     countdown();
-
 });
 
+//starts the timer and and generates a new questions if timer gets to 0
 function countdown() {
     var seconds = 15;
     var countdown = document.getElementById('questionTimer');
-
 
     period = setInterval(function () { //Starts the interval
         seconds--;
@@ -42,7 +36,7 @@ function countdown() {
         }
     }, 1000);
 }
-
+//randomly generates a question 
 function generate() {
     if (gameOverBool === true) {
         return;
@@ -55,11 +49,11 @@ function generate() {
     currentQuestion = questions[rand];
     $("#questionPlace").html(currentQuestion.question);
     var ansLen = currentQuestion.answers.length;
-
+//pushes the answers 
     for (var i = 0; i < ansLen; i++) {
         $("#" + i).append(currentQuestion.answers[i]).show();
     }
-
+//removes the empty buttons 
     for (i; i < 4; i++) {
         var emptyButton = $("#" + i).hide();
     }
@@ -69,13 +63,13 @@ function generate() {
 
 }
 
-
+//checks in the anwer clicked is correct 
 $("label").on("click", function () {
     var guess = $(this)[0].innerText;
     correctGuess(guess);
 
 });
-
+//if the guess is correct 
 function correctGuess(choice) {
 
     var correctAnswer = currentQuestion.solution;
@@ -86,7 +80,8 @@ function correctGuess(choice) {
         clearInterval(period);
         reset();
         nextQuestion();
-    } else {
+    } //if the guess is incorrect 
+    else {
         alert("Hmmmmmm");
         incorrectAnswers++;
         clearInterval(period);
@@ -96,12 +91,11 @@ function correctGuess(choice) {
     }
 
 }
-
-
+//generates a new question 
 function nextQuestion() {
     clearInterval(period);
     $("label").html("");
-    checkIfGameEnd(); 
+    checkIfGameEnd();
     generate();
     reset();
 }
@@ -110,33 +104,46 @@ function reset() {
 
     if (!gameOverBool) {
         countdown();
-
     }
-    
-
 }
-
-
+//check if the test is over
 function checkIfGameEnd() {
     totalAnswers = correctAnswers + incorrectAnswers;
     if (totalAnswers === 10) {
         gameOverBool = true;
         reset();
-        $(".quiz").hide();
         results();
         $("#questionCounter").html(0);
 
     }
 }
-
+//if the test is over pushes the results
 function results() {
-
+    $("#quiz").addClass("hidden");
+    clearInterval(period);
     var finalMessage = "Thank you for taking the test!";
-    finalMessage += "</br>" + "</br>" + "Questions you've answered correctly - " + correctAnswers + "</br>";
-    //finalMessage += "</br>" + "If you want to take the test again click below";
+    finalMessage += "</br>" + "</br>" + "Questions you've answered correctly: " + correctAnswers + "</br>";
+    finalMessage += "</br>";
     $("#questionPlace").html(finalMessage);
-    $("#startingButton").show();
-    //gameOverBool = true;
-//    $("#startingButton").on("click", x);
-    $("#startingButton").trigger('click');
+    var resetButton = $("<button>");
+    resetButton.addClass("btn btn-lg btn-secondary center-block");
+    resetButton.attr("id", "resetMe");
+    resetButton.text("Try Again");
+    $("#gameInfo").append(resetButton);
+
 }
+
+// event delegation
+$("#gameInfo").on("click", "#resetMe", function () {
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    seconds = 15;
+    questionCounter = 0;
+    gameOverBool = false;
+    $("#startingText").hide();
+    $("#quiz").removeClass("hidden");
+    generate();
+    countdown();
+    $("#resetMe").hide();
+});
+
