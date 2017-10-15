@@ -7,8 +7,11 @@ var currentQuestion;
 var questionCounter = 0;
 var clickedButton;
 var gameOverBool = false;
-var totalAnswers = correctAnswers + incorrectAnswers;
+var totalAnswers;
 var period;
+ 
+//// alert dialog
+//alertify.alert("Message");
 
 //start button on click hides the button and starts the test by firing the countdown and generate functions
 $("#startingButton").on("click", function start() {
@@ -30,8 +33,10 @@ function countdown() {
         seconds--;
         countdown.innerHTML = seconds;
         if (seconds === 0) {
+            incorrectAnswers++;
+            //console.log(incorrectAnswers);
             clearInterval(period); //Stops the interval
-            console.log('what "this" equals to inside of the interval', this);
+            //console.log('what "this" equals to inside of the interval', this);
             setTimeout(nextQuestion, 25);
         }
     }, 1000);
@@ -73,6 +78,7 @@ $("label").on("click", function () {
 function correctGuess(choice) {
 
     var correctAnswer = currentQuestion.solution;
+    
     if (choice === correctAnswer) {
         correctAnswers++;
         alert("Great Job!");
@@ -82,6 +88,7 @@ function correctGuess(choice) {
         nextQuestion();
     } //if the guess is incorrect 
     else {
+        
         alert("Hmmmmmm");
         incorrectAnswers++;
         clearInterval(period);
@@ -147,3 +154,5 @@ $("#gameInfo").on("click", "#resetMe", function () {
     $("#resetMe").hide();
 });
 
+//// alert dialog
+//alertify.alert("Message");
