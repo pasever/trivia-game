@@ -1,4 +1,3 @@
-
 userAnwers = [];
 var correctAnswers = 0;
 var incorrectAnswers = 0;
@@ -9,9 +8,6 @@ var clickedButton;
 var gameOverBool = false;
 var totalAnswers;
 var period;
- 
-//// alert dialog
-//alertify.alert("Message");
 
 //start button on click hides the button and starts the test by firing the countdown and generate functions
 $("#startingButton").on("click", function start() {
@@ -26,7 +22,7 @@ $("#startingButton").on("click", function start() {
 
 //starts the timer and and generates a new questions if timer gets to 0
 function countdown() {
-    var seconds = 15;
+    var seconds = 20;
     var countdown = document.getElementById('questionTimer');
 
     period = setInterval(function () { //Starts the interval
@@ -78,18 +74,17 @@ $("label").on("click", function () {
 function correctGuess(choice) {
 
     var correctAnswer = currentQuestion.solution;
-    
+
     if (choice === correctAnswer) {
         correctAnswers++;
-        alert("Great Job!");
-        //$("#correctPlace").html("Correct");
+        alertify.notify('Correct! Great Job!', 'custom', 1);
         clearInterval(period);
         reset();
         nextQuestion();
     } //if the guess is incorrect 
     else {
-        
-        alert("Hmmmmmm");
+
+        alertify.error('That is incorrect', 1);
         incorrectAnswers++;
         clearInterval(period);
         reset();
@@ -144,7 +139,7 @@ function results() {
 $("#gameInfo").on("click", "#resetMe", function () {
     correctAnswers = 0;
     incorrectAnswers = 0;
-    seconds = 15;
+    seconds = 20;
     questionCounter = 0;
     gameOverBool = false;
     $("#startingText").hide();

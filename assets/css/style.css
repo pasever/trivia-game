@@ -143,3 +143,9 @@ label .glyphicon {
     display: table-cell;
     vertical-align: middle;
 }
+
+.ajs-message.ajs-custom { 
+    color: #31708f;  
+    background-color: #d9edf7;  
+    border-color: #31708f; 
+}
